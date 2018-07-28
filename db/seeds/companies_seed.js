@@ -1,13 +1,30 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name')
+  return knex('companies')
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex('table_name').insert([
-        { id: 1, colName: 'rowValue1' },
-        { id: 2, colName: 'rowValue2' },
-        { id: 3, colName: 'rowValue3' }
+      return knex('companies').insert([
+        {
+          name: 'daiiti_insatsu_company',
+          character_id: '2'
+        },
+        {
+          name: 'nishikokun_project',
+          character_id: '3'
+        },
+        {
+          name: 'up-right',
+          character_id: '8'
+        },
+        {
+          name: 'Risona-group',
+          character_id: '10'
+        },
+        {
+          name: 'Osaka-univ',
+          character_id: '11'
+        }
       ]);
     });
 };

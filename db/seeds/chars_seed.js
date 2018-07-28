@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
         Reruhi-san http://www.yurugp.jp/vote/detail.php?id=00000010 Niigata
         Gunma-chan http://www.yurugp.jp/vote/detail.php?id=00000018 Gunma
         Sanomaru http://www.yurugp.jp/vote/detail.php?id=00000020 Tochigi
-        Momomaru http://www.yurugp.jp/vote/detail.php?id=00000007
+        Momomaru http://www.yurugp.jp/vote/detail.php?id=00000007　Fukuoka
         Middle-aged http://www.yurugp.jp/vote/detail.php?id=00000355 up-right
         Chiba-kun http://www.yurugp.jp/vote/detail.php?id=00000367 Chiba
         Riso-nya http://www.yurugp.jp/vote/detail.php?id=00002751 Risona-group
@@ -21,13 +21,13 @@ exports.seed = function(knex, Promise) {
          */
         {
           name: 'Kumamon',
-          gender: 'N/A',
+          gender: '?',
           skill: 'kawaii',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000001'
         },
         {
           name: 'Barii-san',
-          gender: 'N/A',
+          gender: '?',
           skill: 'kawaii',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000002'
         },
@@ -51,13 +51,13 @@ exports.seed = function(knex, Promise) {
         },
         {
           name: 'Sanomaru',
-          gender: 'N/A',
+          gender: '?',
           skill: 'dash and dance',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000020'
         },
         {
           name: 'Momomaru',
-          gender: 'N/A',
+          gender: '?',
           skill: 'kawaii',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000007'
         },
@@ -69,13 +69,13 @@ exports.seed = function(knex, Promise) {
         },
         {
           name: 'Chiba-kun',
-          gender: 'N/A',
+          gender: '?',
           skill: 'kendo',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000367'
         },
         {
           name: 'Riso-nya',
-          gender: 'N/A',
+          gender: '?',
           skill: 'write fish name in kanji',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00002751'
         },
