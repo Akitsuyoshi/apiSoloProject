@@ -10,6 +10,8 @@ exports.up = function(knex, Promise) {
 
     t.string('skill', 40);
 
+    t.string('url');
+
     t.timestamp('registerd_at')
       .notNullable()
       .defaultTo(knex.fn.now());
