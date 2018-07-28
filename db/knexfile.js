@@ -2,14 +2,14 @@
 
 module.exports = {
   development: {
-    client: "pg",
+    client: 'pg',
     connection: {
-      host: "127.0.0.1",
-      database: "yuruChara"
+      host: '127.0.0.1',
+      database: 'yuruchara'
     },
     migrations: {
-      directory: "./migrations",
-      tableName: "knex_migrations"
+      directory: './migrations',
+      tableName: 'knex_migrations'
     },
     port: 5432,
     acquireConnectionTimeout: 10000,
