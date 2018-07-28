@@ -1,7 +1,3 @@
 {
-  "extends": ["airbnb_base", "prettier"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": ["error"]
-  }
+  "extends": "airbnb-base"
 }

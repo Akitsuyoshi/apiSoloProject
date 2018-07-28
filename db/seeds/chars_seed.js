@@ -2,7 +2,7 @@ exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('localchara')
     .del()
-    .then(function() {
+    .then(() => {
       // Inserts seed entries
       return knex('localchara').insert([
         /*Kumamon http://www.yurugp.jp/vote/detail.php?id=00000001 Kumamoto
