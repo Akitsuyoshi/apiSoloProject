@@ -9,11 +9,12 @@ This simple api is written with express, knex, postgres.
 
 1.  Go to the site
 
-`https://github.com/Akitsuyoshi/goWithReact`
+`https://github.com/Akitsuyoshi`
 
 2.  Try to hit some endpoint in the form.
     (e.g.)All yuru characters shows up.
-    `http://localhost:3000/api`
+
+`http://localhost:3000/api`
 
 3.  Post the character with the name and url, which has image
 
