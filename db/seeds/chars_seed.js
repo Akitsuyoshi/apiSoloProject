@@ -68,12 +68,6 @@ exports.seed = function(knex, Promise) {
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000355'
         },
         {
-          name: 'http://www.yurugp.jp/vote/detail.php?id=00000355',
-          gender: 'N/A',
-          skill: 'a',
-          url: ''
-        },
-        {
           name: 'Chiba-kun',
           gender: 'N/A',
           skill: 'kendo',

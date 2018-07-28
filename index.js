@@ -1,26 +1,48 @@
-const express = require("express");
+const express = require('express');
 
 const app = express();
 
-app.use((err, req, res, next) => {
-  if (err) console.error(err.stack);
+const logger = require('morgan');
 
-  res.status(500).send("Something broke!");
+const bodyParser = require('body-parser');
+
+const indexRouter = require('./routes/index');
+
+const apiRouter = require('./routes/api');
+
+const path = require('path');
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, authorization'
+  );
   next();
 });
 
-app.use(express.static("public"));
+app.use((err, req, res, next) => {
+  if (err.stack) console.error(err.stack);
 
-app.get("/", (req, res) => res.send("Hello World!"));
-
-app.post("/", (req, res) => res.send("Got a POST request"));
-
-app.put("/user", (req, res) => {
-  res.send("Got a PUT request at /user");
+  return res.status(500).send('Internal error');
+  next();
 });
 
-app.delete("/user", (req, res) => {
-  res.send("Got a DELETE request at /user");
-});
+app.use(logger('dev'));
 
-app.listen(3000, () => console.log("app listening on port 3000!"));
+app.use(bodyParser.json());
+
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use('/', indexRouter);
+
+app.use('/api', apiRouter);
+
+app.listen(3000, () => console.log('app listening on port 3000!'));
