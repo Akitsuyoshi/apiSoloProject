@@ -8,7 +8,7 @@ router.get('/', (req, res, next) =>
   knex('localchara')
     .select()
     .then(charas => {
-      res.json({ charas });
+      res.status(200).json({ status: 'success', charas });
     })
     .catch(err => {
       res.status(500).send(`DATABASE ERROR: ${err.message}`);
