@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>yuru api</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+</head>
+<body>
+  <div class="contents">
+    <div class="search">
+      <form action="/index.js" method="POST">
+        <label for="window">Call some character</label>
+        <input id="window" type="text" name="name_field" value="http://localhost:3000/api/1">
+        <input type="submit" class="submit">
+      </form>
+    </div>
+    <div class="response">
+      <iframe id="frame" src="http://localhost:3000/api/1" frameborder="2", onscroll="true"></iframe>
+    </div>
+    <div class="flex">
+      <div class="github">
+        <p>Japanes greatest yuru chara(local mascot)</p>
+        <p>and structured data in JSON format</p>
+      </div>
+      <div class="blog">
+        <p>If you wannat contribute this application,</p>
+        <p>Feel free to follow this <a href="https://github.com/Akitsuyoshi/apiSoloProject"> app's repogitory</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>

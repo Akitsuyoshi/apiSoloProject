@@ -5,16 +5,11 @@ const request = require('request');
 const d = require('knex');
 const knex = require('../db/knex');
 require('chai').should();
-require('sinon-as-promised');
 
 const { Character } = require('../routes/model');
-const changeChara = require('../routes/characters')(knex, Character);
+// const changeChara = require('../routes/characters/changeChara')(knex, Character);
 
 const base = 'http://localhost:3000/api';
-
-// function cleanUp(tableName) {
-//   d.schema.dropTable(tableName);
-// }
 
 describe('characters', () => {
   let resObj, resBody, errObj, errBody;
@@ -35,7 +30,7 @@ describe('characters', () => {
           gender: '?',
           skill: 'kawaii',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000001',
-          from: 'Kumamoto',
+          prefname: 'Kumamoto',
           registerd_at: Date.now(),
         },
         {
@@ -44,7 +39,7 @@ describe('characters', () => {
           gender: '?',
           skill: 'kawaii',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000002',
-          from: 'daiiti_insatsu_company',
+          company: 'daiiti_insatsu_company',
           registerd_at: Date.now(),
         },
         {
@@ -53,7 +48,7 @@ describe('characters', () => {
           gender: 'M',
           skill: 'kawaii',
           url: 'http://www.yurugp.jp/vote/detail.php?id=00000003',
-          from: 'nishikokun_project',
+          company: 'nishikokun_project',
           registerd_at: Date.now(),
         },
       ],
@@ -63,7 +58,7 @@ describe('characters', () => {
         gender: 'M',
         skill: 'kawaii',
         url: 'http://www.yurugp.jp/vote/detail.php?id=00000003',
-        from: 'nishikokun_project',
+        company: 'nishikokun_project',
         registerd_at: Date.now(),
       },
     };
@@ -77,8 +72,8 @@ describe('characters', () => {
       status: 'failure',
       message: 'The chars does not exist',
     };
+
     this.get = sinon.stub(request, 'get');
-    this.put = sinon.stub(request, 'put');
   });
   afterEach(() => request.get.restore());
   describe('setup', () => {
@@ -90,6 +85,7 @@ describe('characters', () => {
 
   describe('#list', () => {
     it('should return all characters in a correct format', done => {
+      resBody.charas = resBody.charas.map(char => new Character(char));
       this.get.yields(null, resObj, JSON.stringify(resBody));
       request.get(`${base}`, (err, res, body) => {
         res.statusCode.should.eql(200);
@@ -100,7 +96,7 @@ describe('characters', () => {
 
         // the first object in the data array should
         // have the right keys
-        body.charas[0].should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'registerd_at');
+        body.charas[0].should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'createdAt');
         // the first object should have the right value for name
         body.charas[0].name.should.eql('Kumamon');
         body.charas[0].url.should.eql('http://www.yurugp.jp/vote/detail.php?id=00000001');
@@ -111,6 +107,8 @@ describe('characters', () => {
     });
 
     it('should return one chara by its id', done => {
+      resBody.oneChara = new Character(resBody.oneChara);
+
       this.get.yields(null, resObj, JSON.stringify(resBody));
       request.get(`${base}/3`, (err, res, body) => {
         res.statusCode.should.eql(200);
@@ -119,10 +117,11 @@ describe('characters', () => {
         body = JSON.parse(body);
         body.status.should.eql('success');
 
-        body.oneChara.should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'registerd_at');
+        body.oneChara.should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'createdAt');
         // the first object should have the right value for name
         body.oneChara.name.should.eql('Nishiko-kun');
         body.oneChara.id.should.eql(3);
+        body.oneChara.from.should.eql('nishikokun_project');
 
         done();
       });
@@ -142,11 +141,11 @@ describe('characters', () => {
       });
     });
   });
-  describe('put', () => {
-    this.put(`${base}/`)
-      .returns(Promise.resolve(changeChara))
-      .then(result => {
-        console.log(result);
-      });
-  });
+  // describe.skip('put', () => {
+  //   this.put(`${base}/`)
+  //     .returns(Promise.resolve(changeChara))
+  //     .then(result => {
+  //       console.log(result);
+  //     });
+  // });
 });

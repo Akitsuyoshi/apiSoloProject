@@ -8,14 +8,14 @@ const getAllCharacters = require('./characters/getAll')(knex, Character);
 const getOneCharaById = require('./characters/getOne')(knex, Character);
 const getCharasFromPref = require('./characters/getFrom')(knex, Character);
 // const createNewChara = require('./characters');
-const changeChara = require('./characters/changeChara')(knex, Character);
+// const changeChara = require('./characters/changeChara')(knex, Character);
 // const deleteChara = require('./characters');
 
 router.get('/', getAllCharacters);
 router.get('/:id', getOneCharaById);
 router.get('/from/:prefecture', getCharasFromPref);
 // router.post('/', createNewChara);
-router.put('/:id', changeChara);
+// router.put('/:id', changeChara);
 // router.delete('/:id', deleteChara);
 
 module.exports = router;
