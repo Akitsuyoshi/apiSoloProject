@@ -74,8 +74,14 @@ describe('characters', () => {
     };
 
     this.get = sinon.stub(request, 'get');
+    this.put = sinon.stub(request, 'put');
+    this.post = sinon.stub(request, 'post');
   });
-  afterEach(() => request.get.restore());
+  afterEach(() => {
+    request.get.restore();
+    request.post.restore();
+    request.put.restore();
+  });
   describe('setup', () => {
     it('has run the initial migrations', () =>
       knex('localchara')
@@ -141,11 +147,34 @@ describe('characters', () => {
       });
     });
   });
-  // describe.skip('put', () => {
-  //   this.put(`${base}/`)
-  //     .returns(Promise.resolve(changeChara))
-  //     .then(result => {
-  //       console.log(result);
-  //     });
-  // });
+  describe('post', () => {
+    it('should create a new chara', done => {
+      this.post.yields(null, resObj, JSON.stringify(resBody));
+      request.post(`${base}/`, (err, res, body) => {
+        res.statusCode.should.eql(200);
+        res.headers['content-type'].should.contain('application/json');
+
+        body = JSON.parse(body);
+        console.log(body);
+        body.status.should.eql('success');
+
+        done();
+      });
+    });
+  });
+  describe('put', () => {
+    it('should create a update chara', done => {
+      this.put.yields(null, resObj, JSON.stringify(resBody));
+      request.put(`${base}/13`, (err, res, body) => {
+        res.statusCode.should.eql(200);
+        res.headers['content-type'].should.contain('application/json');
+
+        body = JSON.parse(body);
+        console.log(body);
+        body.status.should.eql('success');
+
+        done();
+      });
+    });
+  });
 });
