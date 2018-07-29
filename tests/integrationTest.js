@@ -52,7 +52,7 @@ describe('characters', () => {
         done();
       });
     });
-    it.only('should return specific chara by its from', done => {
+    it('should return specific chara by its from', done => {
       request.get(`${base}/from/Niigata`, (err, res, body) => {
         res.statusCode.should.eql(200);
         res.headers['content-type'].should.contain('application/json');
