@@ -6,9 +6,12 @@ const data = JSON.parse(JSON.stringify(a));
 
 module.exports = (knex, Character) => (req, res, next) => {
   return Promise.try(() => {
-    const id = req.params.id;
+    const pref = req.params.prefecture;
 
-    return data[id];
+    for (const id in data) {
+      if (data[id].prefname === pref) return data[id];
+    }
+    throw new Error("There's no yurukyara in here");
   })
     .then(chara => {
       return res.status(200).json({

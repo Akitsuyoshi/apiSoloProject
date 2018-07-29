@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const fs = require('fs');
 
-let note = {};
+let note;
 
 module.exports = (knex, Character) => (req, res, next) => {
   return Promise.try(() => {
@@ -31,9 +31,10 @@ module.exports = (knex, Character) => (req, res, next) => {
       });
       //  this is for the memo to store json file
       // note = JSON.stringify(json, null, 4);
-      // fs.writeFile("./characters.json", text, 'utf8', (err) => {
-      //   if (err) throw err;
-      // //   console.log("the file has been made now", Date.now());
+      // return fs.writeFile("../../characters.json", note, 'utf8', (err) => {
+      //   if (err) return err;
+      //   console.log("the file has been made now");
+      //   return json;
       // });
 
       return json;

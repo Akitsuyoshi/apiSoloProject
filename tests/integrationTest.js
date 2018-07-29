@@ -24,7 +24,6 @@ describe('characters', () => {
         res.headers['content-type'].should.contain('application/json');
 
         body = JSON.parse(body);
-        console.log(body);
         body.status.should.eql('success');
 
         body.charas.length.should.eql(12);
@@ -44,13 +43,26 @@ describe('characters', () => {
         res.headers['content-type'].should.contain('application/json');
 
         body = JSON.parse(body);
-        console.log(body);
         body.status.should.eql('success');
         body.oneChara.should.include.keys('id', 'name', 'gender', 'skill', 'from', 'url', 'createdAt');
 
         // the first object should have the right value for name
         body.oneChara.name.should.eql('Nishiko-kun');
         body.oneChara.from.should.eql('nishikokun_project');
+        done();
+      });
+    });
+    it.only('should return specific chara by its from', done => {
+      request.get(`${base}/from/Niigata`, (err, res, body) => {
+        res.statusCode.should.eql(200);
+        res.headers['content-type'].should.contain('application/json');
+        body = JSON.parse(body);
+        console.log(body);
+        body.status.should.eql('success');
+        body.oneChara.should.include.keys('id', 'name', 'gender', 'skill', 'from', 'url', 'createdAt');
+        // the first object should have the right value for name
+        body.oneChara.name.should.eql('Reruhi-san');
+        body.oneChara.from.should.eql('Niigata');
         done();
       });
     });

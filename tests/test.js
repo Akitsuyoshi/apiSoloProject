@@ -91,7 +91,6 @@ describe('characters', () => {
         res.headers['content-type'].should.contain('application/json');
 
         body = JSON.parse(body);
-        console.log(body);
         body.status.should.eql('success');
 
         // the first object in the data array should
@@ -113,7 +112,6 @@ describe('characters', () => {
         res.headers['content-type'].should.contain('application/json');
 
         body = JSON.parse(body);
-        console.log(body);
         body.status.should.eql('success');
 
         body.oneChara.should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'registerd_at');
