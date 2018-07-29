@@ -5,6 +5,10 @@ const request = require('request');
 const d = require('knex');
 const knex = require('../db/knex');
 require('chai').should();
+require('sinon-as-promised');
+
+const { Character } = require('../routes/model');
+const changeChara = require('../routes/characters')(knex, Character);
 
 const base = 'http://localhost:3000/api';
 
@@ -74,6 +78,7 @@ describe('characters', () => {
       message: 'The chars does not exist',
     };
     this.get = sinon.stub(request, 'get');
+    this.put = sinon.stub(request, 'put');
   });
   afterEach(() => request.get.restore());
   describe('setup', () => {
@@ -136,5 +141,12 @@ describe('characters', () => {
         done();
       });
     });
+  });
+  describe('put', () => {
+    this.put(`${base}/`)
+      .returns(Promise.resolve(changeChara))
+      .then(result => {
+        console.log(result);
+      });
   });
 });

@@ -17,7 +17,7 @@ describe('characters', () => {
         .catch(e => console.log(e)));
   });
 
-  describe('#list', () => {
+  describe('get', () => {
     it('should return all characters in a correct format', done => {
       request.get(`${base}`, (err, res, body) => {
         res.statusCode.should.eql(200);
@@ -67,4 +67,13 @@ describe('characters', () => {
       });
     });
   });
+
+  // describe.skip("put", () => {
+  //   it("should update the character given the id", () => {
+  //     bofore(() => {
+  //       knex("localchara").
+  //     })
+  //     request.put(`${base}/`)
+  //   })
+  // })
 });
