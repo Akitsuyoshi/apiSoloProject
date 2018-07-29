@@ -13,7 +13,7 @@ const base = 'http://localhost:3000/api';
 // }
 
 describe('characters', () => {
-  let resobj, resBody;
+  let resObj, resBody, errObj, errBody;
 
   beforeEach(() => {
     resObj = {
@@ -53,6 +53,25 @@ describe('characters', () => {
           registerd_at: Date.now(),
         },
       ],
+      oneChara: {
+        id: 3,
+        name: 'Nishiko-kun',
+        gender: 'M',
+        skill: 'kawaii',
+        url: 'http://www.yurugp.jp/vote/detail.php?id=00000003',
+        from: 'nishikokun_project',
+        registerd_at: Date.now(),
+      },
+    };
+    errObj = {
+      statusCode: 404,
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+    errBody = {
+      status: 'failure',
+      message: 'The chars does not exist',
     };
     this.get = sinon.stub(request, 'get');
   });
@@ -88,17 +107,6 @@ describe('characters', () => {
     });
 
     it('should return one chara by its id', done => {
-      before(() => {
-        resBody[oneChara] = {
-          id: 1,
-          name: 'Kumamon',
-          gender: '?',
-          skill: 'kawaii',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000001',
-          from: 'Kumamoto',
-          registerd_at: Date.now(),
-        };
-      });
       this.get.yields(null, resObj, JSON.stringify(resBody));
       request.get(`${base}/3`, (err, res, body) => {
         res.statusCode.should.eql(200);
@@ -110,12 +118,14 @@ describe('characters', () => {
 
         body.oneChara.should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'registerd_at');
         // the first object should have the right value for name
-        body.oneChara.should.eql('Kumamon');
+        body.oneChara.name.should.eql('Nishiko-kun');
+        body.oneChara.id.should.eql(3);
+
         done();
       });
     });
     it("should return failure if chara doesn't exist", done => {
-      this.get.yields(null, resobj, JSON.stringify(resBody));
+      this.get.yields(null, errObj, JSON.stringify(errBody));
       request.get(`${base}/-1`, (err, res, body) => {
         res.statusCode.should.eql(404);
         res.headers['content-type'].should.contain('application/json');
