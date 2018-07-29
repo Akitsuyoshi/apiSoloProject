@@ -1,30 +1,30 @@
-exports.seed = function(knex, Promise) {
+exports.seed = (knex, Promise) => {
   // Deletes ALL existing entries
   return knex('companies')
     .del()
-    .then(function() {
+    .then(() => {
       // Inserts seed entries
       return knex('companies').insert([
         {
           name: 'daiiti_insatsu_company',
-          character_id: '2'
+          character_id: '2',
         },
         {
           name: 'nishikokun_project',
-          character_id: '3'
+          character_id: '3',
         },
         {
           name: 'up-right',
-          character_id: '8'
+          character_id: '8',
         },
         {
           name: 'Risona-group',
-          character_id: '10'
+          character_id: '10',
         },
         {
           name: 'Osaka-univ',
-          character_id: '11'
-        }
+          character_id: '11',
+        },
       ]);
     });
 };

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/test.js && yarn lint",
+    "httpTest": "mocha tests/integrationTest.js",
     "lint": "node_modules/.bin/eslint --fix ./**/*.js",
     "start": "node index.js",
     "devstart": "nodemon index.js",

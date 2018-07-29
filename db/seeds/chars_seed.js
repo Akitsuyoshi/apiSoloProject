@@ -1,4 +1,4 @@
-exports.seed = function(knex, Promise) {
+exports.seed = (knex, Promise) => {
   // Deletes ALL existing entries
   return knex('localchara')
     .del()
@@ -23,74 +23,74 @@ exports.seed = function(knex, Promise) {
           name: 'Kumamon',
           gender: '?',
           skill: 'kawaii',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000001'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000001',
         },
         {
           name: 'Barii-san',
           gender: '?',
           skill: 'kawaii',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000002'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000002',
         },
         {
           name: 'Nishiko-kun',
           gender: 'M',
           skill: 'kawaii',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000003'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000003',
         },
         {
           name: 'Reruhi-san',
           gender: 'M',
           skill: 'cooking',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000010'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000010',
         },
         {
           name: 'Gunma-chan',
           gender: 'F',
           skill: 'kawaii',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000018'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000018',
         },
         {
           name: 'Sanomaru',
           gender: '?',
           skill: 'dash and dance',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000020'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000020',
         },
         {
           name: 'Momomaru',
           gender: '?',
           skill: 'kawaii',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000007'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000007',
         },
         {
           name: 'Middle-aged',
           gender: 'M',
           skill: 'speaks as well as human',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000355'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000355',
         },
         {
           name: 'Chiba-kun',
           gender: '?',
           skill: 'kendo',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000367'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000367',
         },
         {
           name: 'Riso-nya',
           gender: '?',
           skill: 'write fish name in kanji',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00002751'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00002751',
         },
         {
           name: 'Dr. Crocodile',
           gender: 'M',
           skill: 'mathmatic',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00003705'
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00003705',
         },
         {
           name: 'Unari-kun',
           gender: 'M',
           skill: 'hit and run',
-          url: 'http://www.yurugp.jp/vote/detail.php?id=00000031'
-        }
+          url: 'http://www.yurugp.jp/vote/detail.php?id=00000031',
+        },
       ]);
     });
 };
