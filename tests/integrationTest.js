@@ -46,11 +46,11 @@ describe('characters', () => {
         body = JSON.parse(body);
         console.log(body);
         body.status.should.eql('success');
-        body.charas[0].should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'registerd_at');
+        body.oneChara.should.include.keys('id', 'name', 'gender', 'skill', 'from', 'url', 'createdAt');
 
         // the first object should have the right value for name
-        body.charas[0].name.should.eql('Kumamon');
-        body.charas[0].from.should.eql('Kumamoto');
+        body.oneChara.name.should.eql('Nishiko-kun');
+        body.oneChara.from.should.eql('nishikokun_project');
         done();
       });
     });
