@@ -1,6 +1,6 @@
-exports.seed = function(knex, Promise) {
+exports.seed = (knex, Promise) => {
   // Deletes ALL existing entries
-  const array = [
+  let array = [
     'Hokkaido',
     'Aomori',
     'Iwate',
@@ -47,16 +47,19 @@ exports.seed = function(knex, Promise) {
     'Oita',
     'Miyazaki',
     'Kagoshima',
-    'Okinawa'
+    'Okinawa',
   ];
+
   return knex('prefectures')
     .del()
-    .then(function() {
+    .then(
+      () =>
+        (array = array.map(pref => {
+          return { name: pref };
+        })),
+    )
+    .then(arrs => {
       // Inserts seed entries
-      return knex('prefectures').insert(
-        array.map(pref => {
-          name: pref;
-        })
-      );
+      return knex('prefectures').insert(arrs);
     });
 };

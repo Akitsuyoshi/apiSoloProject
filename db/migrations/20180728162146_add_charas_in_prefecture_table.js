@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('charas_in_prefecture', t => {
-    t.integer('chara_id')
+    t.integer('character_id')
       .unsigned()
       .references('id')
       .inTable('localchara');

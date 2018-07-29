@@ -8,10 +8,6 @@ require('chai').should();
 
 const base = 'http://localhost:3000/api';
 
-// function cleanUp(tableName) {
-//   d.schema.dropTable(tableName);
-// }
-
 describe('characters', () => {
   let resobj, resBody;
   describe('setup', () => {
@@ -31,27 +27,26 @@ describe('characters', () => {
         console.log(body);
         body.status.should.eql('success');
 
-        body.charas.length.should.eql(3);
+        body.charas.length.should.eql(12);
         // the first object in the data array should
         // have the right keys
-        body.charas[0].should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'registerd_at');
+        body.charas[0].should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'createdAt');
         // the first object should have the right value for name
         body.charas[0].name.should.eql('Kumamon');
-        body.charas[0].from.should.eql('Kumamon');
+        body.charas[0].from.should.eql('Kumamoto');
         done();
       });
     });
 
     it('should return specific chara by its id', done => {
-      request.get(`${base}`, (err, res, body) => {
+      request.get(`${base}/3`, (err, res, body) => {
         res.statusCode.should.eql(200);
         res.headers['content-type'].should.contain('application/json');
 
         body = JSON.parse(body);
         console.log(body);
         body.status.should.eql('success');
-        body.charas.length.should.eql(3);
-        body.charas[0].should.include.keys('id', 'name', 'gender', 'skill', 'url', 'registerd_at');
+        body.charas[0].should.include.keys('id', 'name', 'gender', 'skill', 'url', 'from', 'registerd_at');
 
         // the first object should have the right value for name
         body.charas[0].name.should.eql('Kumamon');
